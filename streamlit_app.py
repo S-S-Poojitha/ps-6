@@ -24,27 +24,65 @@ names = [
     "Handcrafted Table"
 ]
 
-# Create a 2x2 grid of images with prices and names
-cols = st.columns(2)
+# Inject custom CSS for layout and image styling
+st.markdown(
+    """
+    <style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 10px;
+        height: 100vh;
+        padding: 10px;
+    }
+    .grid-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: #f9f9f9;
+    }
+    .grid-item img {
+        width: 100%;
+        height: 200px; /* Set the height to crop images */
+        object-fit: cover; /* Crop and fit images */
+    }
+    .product-info {
+        padding: 10px;
+        text-align: center;
+    }
+    .product-info button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-top: 10px;
+        cursor: pointer;
+        border: none;
+        background-color: #007bff;
+        color: white;
+        border-radius: 4px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
-for i in range(2):
-    with cols[i]:
-        # Add first image with padding
-        st.markdown(f"""
-        <div style="padding: 10px; text-align: center;">
-            <img src="{image_urls[i * 2]}" width="300" style="border: 2px solid #ddd; border-radius: 8px;">
-            <p><strong>Name:</strong> {names[i * 2]}</p>
-            <p><strong>Price:</strong> {prices[i * 2]}</p>
-            <button style="padding: 10px 20px; font-size: 16px;">Add to Cart</button>
+# Create a grid layout with 4 equal parts
+st.markdown('<div class="grid-container">', unsafe_allow_html=True)
+
+for i in range(4):
+    st.markdown(f"""
+    <div class="grid-item">
+        <img src="{image_urls[i]}" alt="Product Image">
+        <div class="product-info">
+            <p><strong>Name:</strong> {names[i]}</p>
+            <p><strong>Price:</strong> {prices[i]}</p>
+            <button>Add to Cart</button>
         </div>
-        """, unsafe_allow_html=True)
-        
-        # Add second image with padding
-        st.markdown(f"""
-        <div style="padding: 10px; text-align: center;">
-            <img src="{image_urls[i * 2 + 1]}" width="300" style="border: 2px solid #ddd; border-radius: 8px;">
-            <p><strong>Name:</strong> {names[i * 2 + 1]}</p>
-            <p><strong>Price:</strong> {prices[i * 2 + 1]}</p>
-            <button style="padding: 10px 20px; font-size: 16px;">Add to Cart</button>
-        </div>
-        """, unsafe_allow_html=True)
+    </div>
+    """, unsafe_allow_html=True)
+
+st.markdown('</div>', unsafe_allow_html=True)
