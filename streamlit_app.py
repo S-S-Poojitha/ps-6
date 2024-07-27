@@ -24,66 +24,49 @@ names = [
     "Handcrafted Table"
 ]
 
-# Inject custom CSS for layout, background, and image styling
+# Inject Bootstrap CSS and custom styling
 st.markdown(
     """
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-    .grid-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        gap: 10px;
-        height: 100vh;
-        padding: 10px;
-    }
-    .grid-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        border: 2px solid #ddd;
-        border-radius: 8px;
-        background-color: #f0f0f0; /* Background color for each section */
-        padding: 10px;
-        overflow: hidden;
-    }
-    .grid-item img {
+    .card-img-top {
         max-height: 200px; /* Set a fixed maximum height */
         width: auto; /* Maintain aspect ratio */
-        border: 2px solid #ddd;
-        border-radius: 8px;
+        object-fit: cover; /* Ensure images fit properly */
     }
-    .product-info {
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+    .card-body {
         text-align: center;
     }
-    .product-info button {
-        padding: 10px 20px;
-        font-size: 16px;
-        margin-top: 10px;
-        cursor: pointer;
-        border: none;
+    .btn-primary {
         background-color: #007bff;
-        color: white;
-        border-radius: 4px;
+        border: none;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Create a grid layout with 4 equal parts
-st.markdown('<div class="grid-container">', unsafe_allow_html=True)
+# Create a 2x2 grid layout using Bootstrap
+st.markdown('<div class="container mt-4"><div class="row">', unsafe_allow_html=True)
 
 for i in range(4):
     st.markdown(f"""
-    <div class="grid-item">
-        <img src="{image_urls[i]}" alt="Product Image">
-        <div class="product-info">
-            <p><strong>Name:</strong> {names[i]}</p>
-            <p><strong>Price:</strong> {prices[i]}</p>
-            <button>Add to Cart</button>
+    <div class="col-md-6 col-lg-3 mb-4">
+        <div class="card">
+            <img src="{image_urls[i]}" class="card-img-top" alt="Product Image">
+            <div class="card-body">
+                <h5 class="card-title">{names[i]}</h5>
+                <p class="card-text">{prices[i]}</p>
+                <a href="#" class="btn btn-primary">Add to Cart</a>
+            </div>
         </div>
     </div>
     """, unsafe_allow_html=True)
 
-st.markdown('</div>', unsafe_allow_html=True)
+st.markdown('</div></div>', unsafe_allow_html=True)
