@@ -24,32 +24,27 @@ names = [
     "Handcrafted Table"
 ]
 
-# Inject custom CSS for spacing
-st.markdown(
-    """
-    <style>
-    .image-container {
-        margin-bottom: 20px;
-    }
-    .image-container img {
-        display: block;
-        margin: 0 auto;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # Create a 2x2 grid of images with prices and names
 cols = st.columns(2)
+
 for i in range(2):
     with cols[i]:
-        st.markdown(f'<div class="image-container"><img src="{image_urls[i * 2]}" width="300"></div>', unsafe_allow_html=True)
-        st.write(f"**Name:** {names[i * 2]}")
-        st.write(f"**Price:** {prices[i * 2]}")
-        st.button("Add to Cart", key=f"btn{i * 2}")
+        # Add first image with padding
+        st.markdown(f"""
+        <div style="padding: 10px; text-align: center;">
+            <img src="{image_urls[i * 2]}" width="300" style="border: 2px solid #ddd; border-radius: 8px;">
+            <p><strong>Name:</strong> {names[i * 2]}</p>
+            <p><strong>Price:</strong> {prices[i * 2]}</p>
+            <button style="padding: 10px 20px; font-size: 16px;">Add to Cart</button>
+        </div>
+        """, unsafe_allow_html=True)
         
-        st.markdown(f'<div class="image-container"><img src="{image_urls[i * 2 + 1]}" width="300"></div>', unsafe_allow_html=True)
-        st.write(f"**Name:** {names[i * 2 + 1]}")
-        st.write(f"**Price:** {prices[i * 2 + 1]}")
-        st.button("Add to Cart", key=f"btn{i * 2 + 1}")
+        # Add second image with padding
+        st.markdown(f"""
+        <div style="padding: 10px; text-align: center;">
+            <img src="{image_urls[i * 2 + 1]}" width="300" style="border: 2px solid #ddd; border-radius: 8px;">
+            <p><strong>Name:</strong> {names[i * 2 + 1]}</p>
+            <p><strong>Price:</strong> {prices[i * 2 + 1]}</p>
+            <button style="padding: 10px 20px; font-size: 16px;">Add to Cart</button>
+        </div>
+        """, unsafe_allow_html=True)
