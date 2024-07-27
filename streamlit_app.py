@@ -24,7 +24,7 @@ names = [
     "Handcrafted Table"
 ]
 
-# Inject custom CSS for layout and image styling
+# Inject custom CSS for layout, background, and image styling
 st.markdown(
     """
     <style>
@@ -33,6 +33,7 @@ st.markdown(
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
         gap: 10px;
+        height: 100vh;
         padding: 10px;
     }
     .grid-item {
@@ -42,11 +43,12 @@ st.markdown(
         justify-content: center;
         border: 2px solid #ddd;
         border-radius: 8px;
-        background-color: #f9f9f9;
+        background-color: #f0f0f0; /* Background color for each section */
         padding: 10px;
+        overflow: hidden;
     }
     .grid-item img {
-        max-height: 300px; /* Set a fixed maximum height */
+        max-height: 200px; /* Set a fixed maximum height */
         width: auto; /* Maintain aspect ratio */
         border: 2px solid #ddd;
         border-radius: 8px;
