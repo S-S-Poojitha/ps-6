@@ -33,7 +33,6 @@ st.markdown(
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
         gap: 10px;
-        height: 100vh;
         padding: 10px;
     }
     .grid-item {
@@ -43,16 +42,16 @@ st.markdown(
         justify-content: center;
         border: 2px solid #ddd;
         border-radius: 8px;
-        overflow: hidden;
         background-color: #f9f9f9;
+        padding: 10px;
     }
     .grid-item img {
-        width: 100%;
-        height: 200px; /* Set the height to crop images */
-        object-fit: cover; /* Crop and fit images */
+        max-height: 300px; /* Set a fixed maximum height */
+        width: auto; /* Maintain aspect ratio */
+        border: 2px solid #ddd;
+        border-radius: 8px;
     }
     .product-info {
-        padding: 10px;
         text-align: center;
     }
     .product-info button {
